@@ -7,27 +7,29 @@ function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   const [home, setHome] = useState(0);
   const [away, setAway] = useState(0);
-  const [count, setCount] =useState( 300);
+  const [count, setCount] =useState( 400);
   const [form, setForm] = useState({
-    Team: "",
+    Team: "Name",
     Points: 0,
   });
 
   function passChange(key, value) {
-    setForm(change => {
-      return { ...change, [key]: value };
+    setForm(pass => {
+      return { ...pass, [key]: value };
     });
   }
 
-   
+   //Count Timer
   setTimeout((e) => {
     setCount(count -1)
-    
+    if(count ==0){
+      setCount("time")
+    }
   },1000)
  
-  if (count ===0)
-  setCount("TIME")
-  // setCount('TIME')
+  // if (count ===0)
+  // setCount('0:00')
+
   
  
 
@@ -45,7 +47,7 @@ function App() {
           <div className="timer">{count}</div>
           <div className="away">
             <h2 className="away__name">{form.team}</h2>
-            <div className="away__score">{form.points}{away}</div>
+            <div className="away__score">{form.points}</div>
           </div>
         </div>
         <BottomRow />
@@ -76,11 +78,9 @@ function App() {
           <h1>Points</h1>
           <input
           id='Points'
-          // placeholder='0'
           onChange={e => passChange('points', e.target.value)}
         />
         </div>
-
       </section>
     </div>
   );
